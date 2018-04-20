@@ -125,3 +125,5 @@ create table treatment (
 );
 
 show tables;
+use health_insurance_database;
+select * from patient;
