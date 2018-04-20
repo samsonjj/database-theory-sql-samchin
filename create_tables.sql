@@ -3,9 +3,9 @@
 drop table if exists physician;
 create table physician (
   physician_id decimal(10, 0),
-  first_name varchar(255),
+  first_name varchar(255) not null,
   middle_name varchar(255),
-  last_name varchar(255),
+  last_name varchar(255) not null,
   work_location varchar(255),
   phone_number decimal(13, 0),
   primary key (physician_id)
