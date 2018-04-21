@@ -40,20 +40,20 @@ insert into patient values(
   'Police Officer',
   0000000433,
   043184243927
+), (
+  923416789,
+  'Sivesto',
+  'Theon',
+  'Pike',
+  '1993-06-07',
+  8049214234,
+  'Pie St.',
+  23333,
+  'Richmond',
+  'VA',
+  'Cashier',
+  0000000633,
+  043184291321
 );
 
 describe patient;
-
-ssn             decimal(9, 0),
-first_name      varchar(255) not null,
-middle_name     varchar(255),
-last_name       varchar(255) not null,
-date_of_birth   date not null,
-phone_number    decimal(13),
-stree_addr      varchar(255),
-zip_addr        varchar(10),
-city_addr       varchar(255),
-state_addr      varchar(2),
-occupation      varchar(255),
-primary_physician decimal(10, 0),
-contract        varchar(12),
