@@ -1,0 +1,4 @@
+insert into contract values
+(043184291321, 243504.34, 103243.54),(043184243927, 204381.34, 169327.54);
+
+describe contract;

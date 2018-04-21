@@ -10,8 +10,50 @@ insert into patient values(
   'Richmond',
   'VA',
   'Database Admin',
+  0000000432,
+  043184291321
+), (
+  123452357,
+  'Renny',
+  'Young',
+  'Wremington',
+  '1993-10-05',
+  8045930134,
+  'Yosemnite St.',
+  23333,
+  'Richmond',
+  'VA',
+  'Teacher',
+  0000000433,
+  043184243927
+), (
+  123204357,
+  'Kirk',
   null,
-  null
+  'Angelo',
+  '1992-5-10',
+  8041020134,
+  'Bergeron St.',
+  23333,
+  'Richmond',
+  'VA',
+  'Police Officer',
+  0000000433,
+  043184243927
 );
 
 describe patient;
+
+ssn             decimal(9, 0),
+first_name      varchar(255) not null,
+middle_name     varchar(255),
+last_name       varchar(255) not null,
+date_of_birth   date not null,
+phone_number    decimal(13),
+stree_addr      varchar(255),
+zip_addr        varchar(10),
+city_addr       varchar(255),
+state_addr      varchar(2),
+occupation      varchar(255),
+primary_physician decimal(10, 0),
+contract        varchar(12),
