@@ -105,6 +105,8 @@ create table prescription (
   foreign key (prescribed_to) references patient(ssn),
   foreign key (prescribed_by) references physician(physician_id)
 );
+alter table prescription add constraint
+    check(datediff(end_date, date_prescribed) >= 0);
 
 drop table if exists fill;
 create table fill (
