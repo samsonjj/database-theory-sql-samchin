@@ -76,7 +76,7 @@ from patient join prescription ON patient.ssn = prescription.prescribed_to
   join diagnosis ON patient.ssn = diagnosis.patient
   join diagnosis_code ON diagnosis.diagnosis_code = diagnosis_code.code
 where diagnosis_code.description like 'ADHD'
-  and prescription.prescribed_for like 'Viagra';
+  and prescription.prescribed_for like 'Adderall';
 
 -- Query 11
 -- List liquid medications prescribed to patients with ADHD
@@ -93,4 +93,61 @@ select avg(30 / refill_interval)
 from prescription join tablet on prescribed_for = medication;
 
 -- Query 13
+-- How many patients have a primary physician who has prescribed Amaryl?
+select count(distinct ssn)
+from patient join physician p ON patient.primary_physician = p.physician_id
+  join prescription p2 ON p.physician_id = p2.prescribed_by
+where prescribed_for = 'Codeine';
+
+-- Query 14
+-- What is the average age of patients who take Z-Pak?
+select avg(datediff(now(), date_of_birth) / 365)
+from patient join prescription p ON patient.ssn = p.prescribed_to
+where prescribed_for = 'Z-Pak';
+
+-- Query 15
+-- How many times was Z-Pak prescribed by physicians at St. Mary's Hospital?
+select count(*)
+from prescription join physician p ON prescription.prescribed_by = p.physician_id
+where prescribed_for = 'Z-Pak'
+  and work_location like 'St. Mary%';
+
+-- Query 16
+-- What number of medications does Jonathan Samson take that treat
+select count(distinct prescribed_for)
+from patient join prescription p ON patient.ssn = p.prescribed_to
+  join treatment on p.prescribed_for = treatment.medication
+  join diagnosis_code code2 ON treatment.diagnosis_code = code2.code
+where first_name = 'Jonathan' and last_name = 'Samson'
+  and code2.description = 'Postprocedural Hypertension';
+
+-- Query 17
+-- How many prescriptions are for Codeine?
+select count(*)
+from prescription
+where prescribed_for = 'Codeine';
+
+-- Query 18
+select count(*)
+from patient
+where occupation like 'Database A%';
+
+-- Query 19
+select count(*)
+from prescription join patient p ON prescription.prescribed_to = p.ssn
+where prescribed_for = 'Amoxicillin'
+  and first_name = 'Jonathan' and last_name = 'Samson';
+
+-- Query 20
+select first_name, last_name
+from (select physician_id, count(distinct ssn) as c
+from physician join patient on physician.physician_id = patient.primary_physician
+group by physician.physician_id) as A
+  join physician on A.physician_id = physician.physician_id
+where A.c >= 2;
+
+
+select * from prescription join patient p ON prescription.prescribed_to = p.ssn
+where first_name = 'Jonathan';
+select * from treatment;
 select * from diagnosis_code;
