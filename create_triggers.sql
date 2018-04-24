@@ -1,10 +1,10 @@
 -- Trigger 1
--- Ensure that patient names are capitalized
+-- Ensure that patient names are lowercase
 create trigger cap_names
   after insert on patient
   for each row
   BEGIN
     update patient
-      set first_name = upper(substring(first_name, 0, 1)) +
-        substring(first_name, 1, length(first_name));
+      set first_name = lower(first_name)
+    where first_name = 'Jonathan';
   END;
