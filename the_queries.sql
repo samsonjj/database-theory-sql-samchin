@@ -128,26 +128,23 @@ from prescription
 where prescribed_for = 'Codeine';
 
 -- Query 18
+-- How many patients work as Database Admins?
 select count(*)
 from patient
 where occupation like 'Database A%';
 
 -- Query 19
+-- How many times has Jonathan Samson been prescribed Amoxicillin?
 select count(*)
 from prescription join patient p ON prescription.prescribed_to = p.ssn
 where prescribed_for = 'Amoxicillin'
   and first_name = 'Jonathan' and last_name = 'Samson';
 
 -- Query 20
+-- Show names of physicians that are the primary physician of 2 or more patients
 select first_name, last_name
 from (select physician_id, count(distinct ssn) as c
 from physician join patient on physician.physician_id = patient.primary_physician
 group by physician.physician_id) as A
   join physician on A.physician_id = physician.physician_id
 where A.c >= 2;
-
-
-select * from prescription join patient p ON prescription.prescribed_to = p.ssn
-where first_name = 'Jonathan';
-select * from treatment;
-select * from diagnosis_code;
