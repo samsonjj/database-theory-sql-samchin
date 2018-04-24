@@ -76,7 +76,7 @@ create table diagnosis (
   patient         decimal(9, 0),
   diagnosis_date  date,
   comments        varchar(2000),
-  primary key (diagnosis_code),
+  primary key (diagnosis_code,patient),
   foreign key (diagnosis_code) references diagnosis_code(code),
   foreign key (patient) references patient(ssn)
 );
@@ -121,7 +121,7 @@ drop table if exists treatment;
 create table treatment (
   medication varchar(255),
   diagnosis_code varchar(10),
-  primary key (medication),
+  primary key (medication,diagnosis_code),
   foreign key (medication) references medication(brand_name),
   foreign key (diagnosis_code) references diagnosis_code(code)
 );
